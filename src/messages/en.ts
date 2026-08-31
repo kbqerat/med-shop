@@ -240,7 +240,6 @@ export const en = {
     phoneHint: "9 digits, without the leading 0",
     address: "Address",
     city: "City",
-    postalCode: "Postal code",
     reviewCta: "Review order",
     confirmHeading: "Confirm your order",
     confirmNote: "Check your details before we send this to our team.",
@@ -261,7 +260,6 @@ export const en = {
     invalidPhone: "Enter a valid phone number.",
     invalidAddress: "Enter your delivery address.",
     invalidCity: "Enter your city.",
-    invalidPostalCode: "Enter a valid postal code.",
     invalidCountry: "Enter a valid country.",
     rateLimited:
       "You've placed several orders just now. Please wait {wait} or call us to finish.",

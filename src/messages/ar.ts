@@ -256,7 +256,6 @@ export const ar: Messages = {
     phoneHint: "9 chiffres, sans le 0 initial",
     address: "Adresse",
     city: "Ville",
-    postalCode: "Code postal",
     reviewCta: "مراجعة الطلب",
     confirmHeading: "أكّد طلبك",
     confirmNote: "تحقّق من بياناتك قبل إرسالها إلى فريقنا.",
@@ -277,7 +276,6 @@ export const ar: Messages = {
     invalidPhone: "أدخل رقم هاتف صالحًا.",
     invalidAddress: "أدخل عنوان التوصيل.",
     invalidCity: "أدخل مدينتك.",
-    invalidPostalCode: "أدخل رمزًا بريديًا صالحًا.",
     invalidCountry: "أدخل بلدًا صالحًا.",
     rateLimited:
       "لقد أجريت عدة طلبات للتو. انتظر {wait} أو اتصل بنا لإتمام الطلب.",

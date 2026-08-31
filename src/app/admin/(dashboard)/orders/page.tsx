@@ -84,7 +84,7 @@ export default async function AdminOrdersPage({
                 <p className="text-muted">{order.phone}</p>
               </div>
               <div className="min-w-[11rem] flex-1 text-muted">
-                {order.address}, {order.city} {order.postalCode}
+                {order.address}, {order.city}
               </div>
               <div className="w-16 flex-shrink-0 text-muted">
                 {itemCount} {itemCount === 1 ? "article" : "articles"}

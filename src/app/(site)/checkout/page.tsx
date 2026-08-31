@@ -15,7 +15,6 @@ type DeliveryDetails = {
   phone: string;
   address: string;
   city: string;
-  postalCode: string;
   company: string;
 };
 
@@ -38,7 +37,6 @@ export default function CheckoutPage() {
       phone: `+212${phoneDigits}`,
       address: String(form.get("address")),
       city: String(form.get("city")),
-      postalCode: String(form.get("postalCode")),
       company: String(form.get("company") || ""),
     });
     setStep("review");
@@ -54,7 +52,6 @@ export default function CheckoutPage() {
         fullName: details.fullName,
         address: details.address,
         city: details.city,
-        postalCode: details.postalCode,
         country: "Morocco",
         company: details.company,
         items,
@@ -195,32 +192,22 @@ export default function CheckoutPage() {
                 placeholder={t.address}
                 className="w-full rounded-lg border border-surface-border bg-background px-4 py-3 text-sm outline-none focus:border-accent"
               />
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <input
-                    name="city"
-                    type="text"
-                    required
-                    list="moroccan-cities"
-                    autoComplete="off"
-                    defaultValue={details?.city}
-                    placeholder={t.city}
-                    className="w-full rounded-lg border border-surface-border bg-background px-4 py-3 text-sm outline-none focus:border-accent"
-                  />
-                  <datalist id="moroccan-cities">
-                    {MOROCCAN_CITIES.map((city) => (
-                      <option key={city} value={city} />
-                    ))}
-                  </datalist>
-                </div>
+              <div>
                 <input
-                  name="postalCode"
+                  name="city"
                   type="text"
                   required
-                  defaultValue={details?.postalCode}
-                  placeholder={t.postalCode}
+                  list="moroccan-cities"
+                  autoComplete="off"
+                  defaultValue={details?.city}
+                  placeholder={t.city}
                   className="w-full rounded-lg border border-surface-border bg-background px-4 py-3 text-sm outline-none focus:border-accent"
                 />
+                <datalist id="moroccan-cities">
+                  {MOROCCAN_CITIES.map((city) => (
+                    <option key={city} value={city} />
+                  ))}
+                </datalist>
               </div>
 
               <button
@@ -262,7 +249,7 @@ export default function CheckoutPage() {
                 <div className="flex justify-between gap-4">
                   <dt className="text-muted">{t.address}</dt>
                   <dd className="text-end font-medium">
-                    {details.address}, {details.city} {details.postalCode}
+                    {details.address}, {details.city}
                   </dd>
                 </div>
               </dl>

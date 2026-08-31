@@ -39,7 +39,7 @@ export function OrderSlip({ order }: { order: SlipOrder }) {
         <p className="mt-1 text-sm text-neutral-700">
           {order.address}
           <br />
-          {order.city} {order.postalCode}
+          {order.city}
           <br />
           {order.country}
         </p>

@@ -239,7 +239,6 @@ export const fr: Messages = {
     phoneHint: "9 chiffres, sans le 0 initial",
     address: "Adresse",
     city: "Ville",
-    postalCode: "Code postal",
     reviewCta: "Vérifier la commande",
     confirmHeading: "Confirmez votre commande",
     confirmNote: "Vérifiez vos informations avant l'envoi à notre équipe.",
@@ -261,7 +260,6 @@ export const fr: Messages = {
     invalidPhone: "Saisissez un numéro de téléphone valide.",
     invalidAddress: "Saisissez votre adresse de livraison.",
     invalidCity: "Saisissez votre ville.",
-    invalidPostalCode: "Saisissez un code postal valide.",
     invalidCountry: "Saisissez un pays valide.",
     rateLimited:
       "Vous avez passé plusieurs commandes à l'instant. Patientez {wait} ou appelez-nous pour finaliser.",

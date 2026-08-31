@@ -71,7 +71,6 @@ model Order {
   fullName      String
   address       String
   city          String
-  postalCode    String
   country       String
   totalCents    Int
   enteredAt     DateTime?

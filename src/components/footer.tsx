@@ -14,7 +14,7 @@ import {
 
 const PHONE_NUMBER = "0600029060";
 const PHONE_DISPLAY = "06 00 02 90 60";
-const EMAIL = "bekkaoui.tarek2001@gmail.com";
+const EMAIL = "Medamri4848@gmail.com";
 
 export async function Footer() {
   const [categories, { messages, t: tr }] = await Promise.all([

@@ -20,7 +20,7 @@ export const SITE = {
   themeColor: "#15803d",
   phoneDisplay: "06 00 02 90 60",
   phoneE164: "+212600029060",
-  email: "bekkaoui.tarek2001@gmail.com",
+  email: "Medamri4848@gmail.com",
   whatsappNumber: "212600029060",
   addressLocality: "Oujda",
   addressCountry: "MA",

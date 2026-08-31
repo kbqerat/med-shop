@@ -9,7 +9,6 @@ export type OrderNotification = {
   phone: string;
   address: string;
   city: string;
-  postalCode: string;
   country: string;
   itemCount: number;
   totalCents: number;
@@ -25,8 +24,7 @@ function adminOrderUrl(number: number): string | null {
 function summary(order: OrderNotification): string {
   const items = `${order.itemCount} ${order.itemCount === 1 ? "item" : "items"}`;
   const url = adminOrderUrl(order.number);
-  const location = [order.city, order.postalCode].filter(Boolean).join(" ");
-  const addressLine = [order.address, location, order.country]
+  const addressLine = [order.address, order.city, order.country]
     .filter(Boolean)
     .join(", ");
   return [

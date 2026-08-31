@@ -25,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const PHONE_NUMBER = "0600029060";
 const PHONE_DISPLAY = "06 00 02 90 60";
-const EMAIL = "bekkaoui.tarek2001@gmail.com";
+const EMAIL = "Medamri4848@gmail.com";
 const WHATSAPP_NUMBER = "212600029060";
 
 // Arabic version shows the order date in French, per the owner's preference.
@@ -115,7 +115,7 @@ export default async function OrderSuccessPage({
             <div className="flex justify-between gap-4">
               <dt className="text-muted">{s.address}</dt>
               <dd className="text-end font-medium">
-                {order.address}, {order.city} {order.postalCode}
+                {order.address}, {order.city}
               </dd>
             </div>
           </dl>

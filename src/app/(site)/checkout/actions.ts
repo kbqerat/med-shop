@@ -19,7 +19,6 @@ export type CheckoutInput = {
   fullName: string;
   address: string;
   city: string;
-  postalCode: string;
   country: string;
   items: CartItem[];
   /** Honeypot — real customers never fill this. */
@@ -53,14 +52,12 @@ function validateDetails(
   const phone = clean(input.phone);
   const address = clean(input.address);
   const city = clean(input.city);
-  const postalCode = clean(input.postalCode);
   const country = clean(input.country);
 
   if (fullName.length < 2 || fullName.length > 120) return e.invalidName;
   if (!/^\+?[0-9][0-9\s-]{5,19}$/.test(phone)) return e.invalidPhone;
   if (address.length < 3 || address.length > 300) return e.invalidAddress;
   if (city.length < 2 || city.length > 80) return e.invalidCity;
-  if (postalCode.length > 20) return e.invalidPostalCode;
   if (country.length < 2 || country.length > 60) return e.invalidCountry;
   return null;
 }
@@ -175,7 +172,6 @@ export async function createOrder(input: CheckoutInput): Promise<CheckoutResult>
           fullName: clean(input.fullName),
           address: clean(input.address),
           city: clean(input.city),
-          postalCode: clean(input.postalCode),
           country: clean(input.country),
           totalCents,
           items: { create: lineItems },
@@ -195,7 +191,6 @@ export async function createOrder(input: CheckoutInput): Promise<CheckoutResult>
         phone: clean(input.phone),
         address: clean(input.address),
         city: clean(input.city),
-        postalCode: clean(input.postalCode),
         country: clean(input.country),
         itemCount,
         totalCents: order.totalCents,
