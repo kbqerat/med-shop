@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
+  imageUrl  String?
+  createdAt DateTime @default(now())
+
+  products  Product[]
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String
+  priceCents  Int
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+  accentFrom  String
+  accentTo    String
+  imageUrl    String?
+  videoUrl    String?
+  archived    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  variants    ProductVariant[]
+  orderItems  OrderItem[]
+  images      ProductImage[]
+}
+
+model ProductVariant {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  size      String
+  sku       String?
+  stock     Int     @default(0)
+  position  Int     @default(0)
+
+  orderItems OrderItem[]
+
+  @@unique([productId, size])
+  @@index([productId])
+}
+
+model ProductImage {
+  id        String   @id @default(cuid())
+  url       String
+  position  Int      @default(0)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+}
+
+model Order {
+  id            String      @id @default(cuid())
+  number        Int         @unique
+  phone         String
+  email         String?
+  fullName      String
+  address       String
+  city          String
+  postalCode    String
+  country       String
+  totalCents    Int
+  enteredAt     DateTime?
+  createdAt     DateTime    @default(now())
+
+  items         OrderItem[]
+}
+
+// Atomic sequence source for human-facing IDs (SQLite can't autoincrement a
+// non-primary-key column). One row per sequence, incremented in a transaction.
+model Counter {
+  name  String @id
+  value Int
+}
+
+// Per-IP throttle for sensitive endpoints (admin login, order creation).
+// One row per "<scope>:<ip>" key.
+model RateLimit {
+  key         String    @id
+  hits        Int       @default(0)
+  firstHitAt  DateTime  @default(now())
+  lockedUntil DateTime?
+  updatedAt   DateTime  @updatedAt
+}
+
+model OrderItem {
+  id         String          @id @default(cuid())
+  order      Order           @relation(fields: [orderId], references: [id])
+  orderId    String
+  product    Product         @relation(fields: [productId], references: [id])
+  productId  String
+  variant    ProductVariant? @relation(fields: [variantId], references: [id], onDelete: SetNull)
+  variantId  String?
+  size       String
+  quantity   Int
+  priceCents Int
+}

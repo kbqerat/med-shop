@@ -1,0 +1,5 @@
+-upload images videos through cloudflare r2
+-move to postgres
+
+
+

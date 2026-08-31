@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      # Prisma needs a URL at generate/build time; no real database is reached
+      # (all DB-backed routes render dynamically).
+      DATABASE_URL: "postgresql://ci:ci@127.0.0.1:5432/ci"
+      DIRECT_URL: "postgresql://ci:ci@127.0.0.1:5432/ci"
+      ADMIN_PASSWORD: "ci-placeholder"
+      ADMIN_SESSION_SECRET: "ci-placeholder-secret-not-used-anywhere"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npx prisma generate
+
+      - run: npm run typecheck
+
+      - run: npm run lint
+
+      - run: npm test
+
+      - run: npm run build
