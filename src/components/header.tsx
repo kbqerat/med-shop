@@ -23,7 +23,7 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
         <LocaleLink
           href="/"
-          className="group flex items-center text-xl font-bold tracking-tight"
+          className="group flex shrink-0 items-center whitespace-nowrap text-xl font-bold tracking-tight"
         >
           {messages.brand}
         </LocaleLink>

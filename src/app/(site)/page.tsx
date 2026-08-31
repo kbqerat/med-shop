@@ -10,8 +10,9 @@ import {
   CashIcon,
   TruckIcon,
   BadgeCheckIcon,
-  ArrowUpRightIcon,
-  StarIcon,
+  FlameIcon,
+  PhoneIcon,
+  WhatsAppIcon,
 } from "@/components/icons";
 import { Testimonials } from "@/components/testimonials";
 import { getCategories } from "@/lib/categories";
@@ -22,6 +23,10 @@ import heroAccent from "@/images/landing/img1.jpeg";
 import showroomBanner from "@/images/landing/img2.jpeg";
 
 export const dynamic = "force-dynamic";
+
+/** Owner's order line — WhatsApp uses the international form, the label stays local. */
+const ORDER_PHONE_INTL = "212600029060";
+const ORDER_PHONE_DISPLAY = "0600029060";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = getDictionary(await getLocale()).meta;
@@ -87,7 +92,7 @@ export default async function Home() {
     ]);
   const newArrivals = newArrivalsRaw.map(toProductCardData);
   const m = messages.home;
-  const [titleBefore, titleAfter] = m.heroTitle.split("{brands}");
+  const [titleBefore, titleAfter] = m.heroTitle.split("{brand}");
 
   return (
     <div>
@@ -101,7 +106,7 @@ export default async function Home() {
             <div className="absolute -bottom-32 -start-20 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
           </div>
 
-          <div className="relative grid gap-12 p-8 sm:p-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10">
+          <div className="relative grid gap-12 p-6 sm:p-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10">
             <div>
               <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-white/80 ring-1 ring-white/15">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent" />
@@ -112,26 +117,58 @@ export default async function Home() {
                 <span className="text-accent">{m.heroTitleBrands}</span>
                 {titleAfter}
               </h1>
-              <p className="mt-5 max-w-md text-base text-white/70 sm:text-lg">
+              <p className="mt-4 max-w-md text-base text-white/70 sm:text-lg">
                 {m.heroSubtitle}
               </p>
-              <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
-                <LocaleLink
-                  href="/products"
-                  className="group inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3.5 font-semibold text-accent-foreground transition-transform hover:scale-105"
-                >
-                  {messages.common.shopAllCaps}
-                  <ArrowUpRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100" />
-                </LocaleLink>
-                <div className="flex items-center gap-1.5 text-sm text-white/70">
-                  <span className="flex text-accent">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <StarIcon key={i} className="h-4 w-4" />
-                    ))}
-                  </span>
-                  {m.heroRating}
-                </div>
+
+              <div className="mt-7 max-w-md rounded-2xl bg-white/[0.06] p-4 ring-1 ring-white/10 backdrop-blur-sm sm:p-5">
+                <p className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-white">
+                  <FlameIcon className="h-4 w-4 flex-shrink-0 text-accent" />
+                  {m.offersKicker}
+                </p>
+                <ul className="mt-3 space-y-2 sm:mt-4 sm:space-y-2.5">
+                  {m.offers.map((offer, i) => (
+                    <li
+                      key={i}
+                      className="flex items-center gap-2.5 rounded-xl bg-white/5 px-3 py-2.5 text-white sm:gap-3 sm:px-4 sm:py-3"
+                    >
+                      <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-white/10 text-xs font-bold sm:h-7 sm:w-7 sm:text-sm">
+                        {i + 1}
+                      </span>
+                      <span className="text-sm font-medium">{offer.label}</span>
+                      <span className="h-px flex-1 bg-white/15" />
+                      <span className="whitespace-nowrap text-sm font-bold sm:text-base">
+                        {offer.price}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-3 flex items-center gap-2 text-sm font-medium text-white/80 sm:mt-4">
+                  <TruckIcon className="h-4 w-4 flex-shrink-0 text-accent" />
+                  <span>{m.freeDeliveryBadge} 🇲🇦</span>
+                </p>
               </div>
+
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6">
+                <a
+                  href={`https://wa.me/${ORDER_PHONE_INTL}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 font-semibold text-accent-foreground transition-transform hover:scale-105 sm:w-auto"
+                >
+                  <WhatsAppIcon className="h-5 w-5" />
+                  {messages.common.orderNow}
+                </a>
+                <a
+                  href={`tel:+${ORDER_PHONE_INTL}`}
+                  dir="ltr"
+                  className="inline-flex items-center gap-2 self-start text-sm font-semibold text-white hover:text-accent"
+                >
+                  <PhoneIcon className="h-4 w-4 flex-shrink-0 text-accent" />
+                  {ORDER_PHONE_DISPLAY}
+                </a>
+              </div>
+              <p className="mt-3 text-sm text-white/60">{m.orderNote}</p>
             </div>
 
             <div className="relative mx-auto w-full max-w-sm lg:max-w-none">
@@ -151,7 +188,7 @@ export default async function Home() {
                 </div>
               </div>
 
-              <div className="absolute -bottom-6 -start-6 w-32 -rotate-6 overflow-hidden rounded-2xl border-4 border-background shadow-2xl transition-transform hover:rotate-0 sm:-bottom-8 sm:-start-8 sm:w-40">
+              <div className="absolute -bottom-4 -start-4 w-20 -rotate-6 overflow-hidden rounded-xl border-[3px] border-background shadow-2xl transition-transform hover:rotate-0 sm:-bottom-8 sm:-start-8 sm:w-40 sm:rounded-2xl sm:border-4">
                 <div className="relative aspect-[4/5]">
                   <Image
                     src={heroAccent}
