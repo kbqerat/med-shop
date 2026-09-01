@@ -77,7 +77,7 @@ export const ar: Messages = {
     authenticSubtitle: "ستايل عصري",
     freeDeliveryBadge: "توصيل مجاني في كل أنحاء المغرب",
     codBadge: "التوصيل فابور",
-    trustCod: "التوصيل فابور",
+    trustCod: "التوصيل فابور، بدون أي دفع إلكتروني.",
     trustDelivery: "التوصيل مجاني لجميع أنحاء المغرب 🇲🇦",
     trustAuthentic: "جودة ممتازة · ستايل عصري · مناسبة للجميع.",
     browseKicker: "تصفّح",
