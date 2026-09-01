@@ -6,7 +6,6 @@ import { organizationSchema, webSiteSchema } from "@/lib/structured-data";
 import { ProductCard } from "@/components/product-card";
 import { CategoryTile } from "@/components/category-tile";
 import {
-  CashIcon,
   TruckIcon,
   BadgeCheckIcon,
   FlameIcon,
@@ -186,7 +185,7 @@ export default async function Home() {
 
         <div className="mt-6 grid grid-cols-1 gap-4 rounded-2xl border border-surface-border bg-surface p-5 text-sm sm:grid-cols-3">
           <div className="flex items-center gap-3">
-            <CashIcon className="h-5 w-5 flex-shrink-0 text-accent" />
+            <TruckIcon className="h-5 w-5 flex-shrink-0 text-accent" />
             {m.trustCod}
           </div>
           <div className="flex items-center gap-3 sm:border-x sm:border-surface-border sm:px-4">
