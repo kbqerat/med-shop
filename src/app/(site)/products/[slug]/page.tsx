@@ -6,7 +6,7 @@ import { ProductGallery } from "@/components/product-gallery";
 import { AddToCartForm } from "@/components/add-to-cart-form";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { LocaleLink } from "@/components/locale-link";
-import { SimilarProductsCarousel } from "@/components/similar-products-carousel";
+import { ProductCard } from "@/components/product-card";
 import { JsonLd } from "@/components/json-ld";
 import { TruckIcon } from "@/components/icons";
 import { breadcrumbSchema, productSchema } from "@/lib/structured-data";
@@ -14,7 +14,9 @@ import { formatPrice } from "@/lib/format";
 import { toProductCardData } from "@/lib/product-card-data";
 import { getTranslations } from "@/lib/i18n/server";
 
-const SIMILAR_PRODUCTS_COUNT = 8;
+// Show every product in the same category; if that's fewer than this, top up
+// with newest products from other categories so the section never looks thin.
+const MIN_RELATED_COUNT = 20;
 
 // Shared by generateMetadata and the page so the lookup runs once per request.
 const getProduct = cache((slug: string) =>
@@ -76,11 +78,10 @@ export default async function ProductPage({
     },
     include: { category: true, variants: true },
     orderBy: { createdAt: "desc" },
-    take: SIMILAR_PRODUCTS_COUNT,
   });
 
   let similarProducts = sameCategoryProducts;
-  if (similarProducts.length < SIMILAR_PRODUCTS_COUNT) {
+  if (similarProducts.length < MIN_RELATED_COUNT) {
     const otherProducts = await prisma.product.findMany({
       where: {
         archived: false,
@@ -88,7 +89,7 @@ export default async function ProductPage({
       },
       include: { category: true, variants: true },
       orderBy: { createdAt: "desc" },
-      take: SIMILAR_PRODUCTS_COUNT - similarProducts.length,
+      take: MIN_RELATED_COUNT - similarProducts.length,
     });
     similarProducts = [...similarProducts, ...otherProducts];
   }
@@ -182,10 +183,13 @@ export default async function ProductPage({
       {similarProducts.length > 0 && (
         <div className="mt-24">
           <h2 className="text-2xl font-bold">{messages.product.similarTitle}</h2>
-          <div className="mt-6">
-            <SimilarProductsCarousel
-              products={similarProducts.map(toProductCardData)}
-            />
+          <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {similarProducts.map((related) => (
+              <ProductCard
+                key={related.slug}
+                product={toProductCardData(related)}
+              />
+            ))}
           </div>
         </div>
       )}

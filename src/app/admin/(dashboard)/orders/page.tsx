@@ -5,6 +5,7 @@ import { buildOrderWhere } from "@/lib/order-filters";
 import { toggleOrderEntered } from "./actions";
 import { AdminListFilters } from "@/components/admin/list-filters";
 import { SlipButton } from "@/components/admin/slip-button";
+import { DeleteOrderButton } from "@/components/admin/delete-order-button";
 import { Pagination } from "@/components/pagination";
 
 export const dynamic = "force-dynamic";
@@ -99,6 +100,17 @@ export default async function AdminOrdersPage({
                   year: "numeric",
                 })}
               </div>
+              <div className="w-24 flex-shrink-0">
+                {order.enteredAt ? (
+                  <span className="rounded-full border border-green-200 bg-green-50 px-2.5 py-1 text-xs font-semibold text-green-700">
+                    Saisie
+                  </span>
+                ) : (
+                  <span className="rounded-full border border-orange-200 bg-orange-50 px-2.5 py-1 text-xs font-semibold text-orange-600">
+                    En attente
+                  </span>
+                )}
+              </div>
               <SlipButton order={order} />
               <form action={toggleOrderEntered} className="flex-shrink-0">
                 <input type="hidden" name="id" value={order.id} />
@@ -113,6 +125,10 @@ export default async function AdminOrdersPage({
                   {order.enteredAt ? "Saisie ✓" : "Marquer saisie"}
                 </button>
               </form>
+              <DeleteOrderButton
+                orderId={order.id}
+                orderLabel={formatOrderNumber(order.number)}
+              />
             </div>
           );
         })}

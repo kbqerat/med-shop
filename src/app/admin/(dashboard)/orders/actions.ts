@@ -22,3 +22,20 @@ export async function toggleOrderEntered(formData: FormData) {
 
   revalidatePath("/admin/orders");
 }
+
+/** Permanently remove an order and its line items. */
+export async function deleteOrder(formData: FormData) {
+  await requireAdmin();
+
+  const id = String(formData.get("id") || "");
+  const order = await prisma.order.findUnique({ where: { id }, select: { id: true } });
+  if (!order) return;
+
+  await prisma.$transaction([
+    prisma.orderItem.deleteMany({ where: { orderId: id } }),
+    prisma.order.delete({ where: { id } }),
+  ]);
+
+  revalidatePath("/admin/orders");
+  revalidatePath("/admin");
+}

@@ -89,11 +89,6 @@ export const en = {
     showroomKicker: "In the shop",
     showroomTitle: "Every cap, checked by hand before it ships",
     showroomAlt: "Inside the Med Shop showroom",
-    bestSellersKicker: "Fan favorites",
-    bestSellersTitle: "Best sellers",
-    bestsellerBadge: "Bestseller",
-    newArrivalsKicker: "Just in",
-    newArrivalsTitle: "New arrivals",
   },
 
   testimonials: {
@@ -214,8 +209,6 @@ export const en = {
     showPhoto: "Show photo {n}",
     showVideo: "Show video",
     photoCount: "{current} / {total}",
-    prevProducts: "Previous products",
-    nextProducts: "Next products",
   },
 
   cart: {

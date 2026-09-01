@@ -85,11 +85,6 @@ export const ar: Messages = {
     showroomKicker: "في متجرنا",
     showroomTitle: "كل قبعة، مفحوصة يدويًا قبل الشحن",
     showroomAlt: "داخل معرض Med Shop",
-    bestSellersKicker: "الأكثر تفضيلًا",
-    bestSellersTitle: "الأكثر مبيعًا",
-    bestsellerBadge: "الأكثر مبيعًا",
-    newArrivalsKicker: "وصل حديثًا",
-    newArrivalsTitle: "أحدث المنتجات",
   },
 
   testimonials: {
@@ -228,8 +223,6 @@ export const ar: Messages = {
     showPhoto: "عرض الصورة {n}",
     showVideo: "عرض الفيديو",
     photoCount: "{current} / {total}",
-    prevProducts: "المنتجات السابقة",
-    nextProducts: "المنتجات التالية",
   },
 
   cart: {

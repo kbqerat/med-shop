@@ -3,8 +3,7 @@ import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 import { JsonLd } from "@/components/json-ld";
 import { organizationSchema, webSiteSchema } from "@/lib/structured-data";
-import { LocaleLink } from "@/components/locale-link";
-import { ProductCard, type ProductCardData } from "@/components/product-card";
+import { ProductCard } from "@/components/product-card";
 import { CategoryTile } from "@/components/category-tile";
 import {
   CashIcon,
@@ -37,60 +36,24 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-async function getBestSellers(limit: number): Promise<ProductCardData[]> {
-  const sales = await prisma.orderItem.groupBy({
-    by: ["productId"],
-    _sum: { quantity: true },
-    orderBy: { _sum: { quantity: "desc" } },
-    take: limit,
-  });
-
-  const ranked = sales.length
-    ? await prisma.product.findMany({
-        where: {
-          id: { in: sales.map((row) => row.productId) },
-          archived: false,
-        },
-        include: { category: true, variants: true },
-      })
-    : [];
-  const rankedById = new Map(ranked.map((product) => [product.id, product]));
-  const bestSellers = sales
-    .map((row) => rankedById.get(row.productId))
-    .filter((product): product is (typeof ranked)[number] => Boolean(product));
-
-  if (bestSellers.length < limit) {
-    const fallback = await prisma.product.findMany({
-      where: {
-        archived: false,
-        ...(bestSellers.length
-          ? { id: { notIn: bestSellers.map((product) => product.id) } }
-          : {}),
-      },
-      orderBy: { createdAt: "desc" },
-      take: limit - bestSellers.length,
-      include: { category: true, variants: true },
-    });
-    bestSellers.push(...fallback);
-  }
-
-  return bestSellers.map(toProductCardData);
-}
-
 export default async function Home() {
-  const [{ messages }, categories, newArrivalsRaw, bestSellers] =
-    await Promise.all([
-      getTranslations(),
-      getCategories(),
-      prisma.product.findMany({
-        where: { archived: false },
-        orderBy: { createdAt: "desc" },
-        take: 4,
-        include: { category: true, variants: true },
-      }),
-      getBestSellers(4),
-    ]);
-  const newArrivals = newArrivalsRaw.map(toProductCardData);
+  const [{ messages }, categories, categoryGroups] = await Promise.all([
+    getTranslations(),
+    getCategories(),
+    prisma.category.findMany({
+      orderBy: { createdAt: "asc" },
+      include: {
+        products: {
+          where: { archived: false },
+          orderBy: { createdAt: "desc" },
+          include: { category: true, variants: true },
+        },
+      },
+    }),
+  ]);
+  const populatedGroups = categoryGroups.filter(
+    (group) => group.products.length > 0
+  );
   const m = messages.home;
   const [titleBefore, titleAfter] = m.heroTitle.split("{brand}");
 
@@ -273,59 +236,30 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="border-y border-surface-border bg-surface py-20">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mb-6 flex items-end justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-accent">
-                {m.bestSellersKicker}
-              </p>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight">
-                {m.bestSellersTitle}
-              </h2>
-            </div>
-            <LocaleLink
-              href="/products"
-              className="text-sm font-medium text-muted hover:text-foreground"
-            >
-              {messages.common.viewAll}
-            </LocaleLink>
-          </div>
-          <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
-            {bestSellers.map((product) => (
-              <ProductCard
-                key={product.slug}
-                product={product}
-                badge={m.bestsellerBadge}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="mb-6 flex items-end justify-between">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-accent">
-              {m.newArrivalsKicker}
-            </p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight">
-              {m.newArrivalsTitle}
+      {populatedGroups.map((group, index) => (
+        <section
+          key={group.id}
+          className={
+            index % 2 === 0
+              ? "py-20"
+              : "border-y border-surface-border bg-surface py-20"
+          }
+        >
+          <div className="mx-auto max-w-6xl px-6">
+            <h2 className="mb-6 text-3xl font-bold tracking-tight">
+              {group.name}
             </h2>
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
+              {group.products.map((product) => (
+                <ProductCard
+                  key={product.slug}
+                  product={toProductCardData(product)}
+                />
+              ))}
+            </div>
           </div>
-          <LocaleLink
-            href="/products"
-            className="text-sm font-medium text-muted hover:text-foreground"
-          >
-            {messages.common.viewAll}
-          </LocaleLink>
-        </div>
-        <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
-          {newArrivals.map((product) => (
-            <ProductCard key={product.slug} product={product} />
-          ))}
-        </div>
-      </section>
+        </section>
+      ))}
 
       <Testimonials />
     </div>

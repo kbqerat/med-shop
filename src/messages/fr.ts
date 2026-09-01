@@ -85,11 +85,6 @@ export const fr: Messages = {
     showroomKicker: "En boutique",
     showroomTitle: "Chaque casquette, vérifiée à la main avant l'envoi",
     showroomAlt: "À l'intérieur du showroom Med Shop",
-    bestSellersKicker: "Coups de cœur",
-    bestSellersTitle: "Meilleures ventes",
-    bestsellerBadge: "Best-seller",
-    newArrivalsKicker: "Nouveautés",
-    newArrivalsTitle: "Nouveaux arrivages",
   },
 
   testimonials: {
@@ -213,8 +208,6 @@ export const fr: Messages = {
     showPhoto: "Voir la photo {n}",
     showVideo: "Voir la vidéo",
     photoCount: "{current} / {total}",
-    prevProducts: "Produits précédents",
-    nextProducts: "Produits suivants",
   },
 
   cart: {
