@@ -146,7 +146,7 @@ export default async function Home() {
                   style={{ objectPosition: "50% 88%" }}
                 />
                 <div className="absolute start-3 top-3 flex items-center gap-2 rounded-full bg-black/55 px-3.5 py-2 text-xs font-semibold text-white ring-1 ring-white/15 backdrop-blur-sm sm:start-4 sm:top-4">
-                  <CashIcon className="h-4 w-4 flex-shrink-0" />
+                  <TruckIcon className="h-4 w-4 flex-shrink-0" />
                   {m.codBadge}
                 </div>
               </div>

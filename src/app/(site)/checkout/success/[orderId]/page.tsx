@@ -14,6 +14,8 @@ import {
   PhoneIcon,
   MailIcon,
   WhatsAppIcon,
+  CheckCircleIcon,
+  ReceiptIcon,
 } from "@/components/icons";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -63,20 +65,47 @@ export default async function OrderSuccessPage({
   const orderNumber = formatOrderNumber(order.number);
   const whatsappMessage = tr(s.whatsappMessage, { number: orderNumber });
   const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
+  const [confirmBefore, confirmAfter] = s.confirmedLine.split("{phone}");
 
   return (
-    <div className="mx-auto max-w-2xl px-6 py-24 text-center">
-      <p className="text-sm font-semibold text-accent">{s.kicker}</p>
-      <h1 className="mt-3 text-4xl font-bold">
-        {tr(s.thanks, { name: order.fullName.split(" ")[0] })}
-      </h1>
-      <p className="mt-4 text-muted">
-        {tr(s.confirmedLine, { number: orderNumber, phone: order.phone })}
-      </p>
+    <div className="mx-auto max-w-2xl px-6 py-16 sm:py-20">
+      <div className="text-center">
+        <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-accent/10 ring-8 ring-accent/[0.06]">
+          <CheckCircleIcon className="h-11 w-11 text-accent" />
+        </div>
+        <p className="mt-6 text-xs font-semibold uppercase tracking-widest text-accent">
+          {s.kicker}
+        </p>
+        <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+          {tr(s.thanks, { name: order.fullName.split(" ")[0] })}
+        </h1>
+      </div>
 
-      <div className="mt-10 grid gap-4 text-start sm:grid-cols-2">
+      <div className="mt-8 overflow-hidden rounded-3xl border border-accent/25 bg-accent/[0.06] shadow-sm">
+        <div className="flex flex-col items-center gap-1 border-b border-accent/15 bg-accent/10 px-6 py-5 text-center">
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-accent/80">
+            {s.orderNumber}
+          </span>
+          <span
+            className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
+            dir="ltr"
+          >
+            {orderNumber}
+          </span>
+        </div>
+        <p className="px-6 py-6 text-center text-base font-medium leading-relaxed text-foreground sm:text-lg">
+          {confirmBefore}
+          <span dir="ltr" className="mx-1 whitespace-nowrap font-bold text-accent">
+            {order.phone}
+          </span>
+          {confirmAfter}
+        </p>
+      </div>
+
+      <div className="mt-6 grid gap-4 text-start sm:grid-cols-2">
         <div className="rounded-2xl border border-surface-border bg-surface p-5">
-          <h2 className="text-xs font-semibold uppercase tracking-wide text-muted">
+          <h2 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">
+            <ReceiptIcon className="h-4 w-4 text-accent" />
             {s.orderDetailsHeading}
           </h2>
           <dl className="mt-3 space-y-2 text-sm">
@@ -98,7 +127,8 @@ export default async function OrderSuccessPage({
         </div>
 
         <div className="rounded-2xl border border-surface-border bg-surface p-5">
-          <h2 className="text-xs font-semibold uppercase tracking-wide text-muted">
+          <h2 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">
+            <PinIcon className="h-4 w-4 text-accent" />
             {s.deliveryToHeading}
           </h2>
           <dl className="mt-3 space-y-2 text-sm">
@@ -122,43 +152,44 @@ export default async function OrderSuccessPage({
         </div>
       </div>
 
-      <h2 className="mt-10 text-start text-xs font-semibold uppercase tracking-wide text-muted">
-        {s.itemsHeading}
-      </h2>
-      <div className="mt-3 divide-y divide-surface-border border-y border-surface-border text-start">
-        {order.items.map((item) => (
-          <div key={item.id} className="flex items-center gap-3 py-3">
-            <ProductArt
-              accentFrom={item.product.accentFrom}
-              accentTo={item.product.accentTo}
-              imageUrl={item.product.imageUrl}
-              className="h-12 w-12 flex-shrink-0 rounded-lg"
-            />
-            <div className="flex-1 text-sm">
-              <p className="font-medium">{item.product.name}</p>
-              <p className="text-muted">
-                {item.size} × {item.quantity}
-              </p>
+      <div className="mt-6 rounded-2xl border border-surface-border bg-surface p-5 text-start">
+        <h2 className="text-xs font-semibold uppercase tracking-wide text-muted">
+          {s.itemsHeading}
+        </h2>
+        <div className="mt-3 divide-y divide-surface-border">
+          {order.items.map((item) => (
+            <div key={item.id} className="flex items-center gap-3 py-3">
+              <ProductArt
+                accentFrom={item.product.accentFrom}
+                accentTo={item.product.accentTo}
+                imageUrl={item.product.imageUrl}
+                className="h-12 w-12 flex-shrink-0 rounded-lg"
+              />
+              <div className="flex-1 text-sm">
+                <p className="font-medium">{item.product.name}</p>
+                <p className="text-muted">
+                  {item.size} × {item.quantity}
+                </p>
+              </div>
+              <span className="text-sm font-semibold text-accent">
+                {formatPrice(item.priceCents * item.quantity)}
+              </span>
             </div>
-            <span className="text-sm font-semibold text-accent">
-              {formatPrice(item.priceCents * item.quantity)}
-            </span>
-          </div>
-        ))}
-      </div>
-      <div className="mt-4 flex items-center justify-between">
-        <span className="font-bold">{messages.common.total}</span>
-        <span className="text-lg font-semibold text-accent">
-          {formatPrice(order.totalCents)}
-        </span>
-      </div>
-
-      <div className="mt-6 flex items-center gap-2 rounded-xl bg-surface px-4 py-3 text-start text-sm text-muted">
-        <TruckIcon className="h-5 w-5 flex-shrink-0" />
-        {s.deliveryLine}
+          ))}
+        </div>
+        <div className="mt-3 flex items-center justify-between border-t border-surface-border pt-3">
+          <span className="font-bold">{messages.common.total}</span>
+          <span className="text-lg font-semibold text-accent">
+            {formatPrice(order.totalCents)}
+          </span>
+        </div>
+        <div className="mt-4 flex items-center gap-2 rounded-xl bg-accent/[0.06] px-4 py-3 text-sm font-medium text-accent">
+          <TruckIcon className="h-5 w-5 flex-shrink-0" />
+          {s.deliveryLine}
+        </div>
       </div>
 
-      <div className="mt-10 rounded-2xl border border-surface-border bg-surface p-6 text-start">
+      <div className="mt-6 rounded-2xl border border-surface-border bg-surface p-6 text-start">
         <h2 className="text-lg font-bold">{s.questionsTitle}</h2>
         <p className="mt-1 text-sm text-muted">{s.questionsSubtitle}</p>
         <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
@@ -197,12 +228,14 @@ export default async function OrderSuccessPage({
         {s.payOnArrival}
       </div>
 
-      <LocaleLink
-        href="/products"
-        className="mt-10 inline-block rounded-full bg-accent px-8 py-3 font-semibold text-accent-foreground transition-transform hover:scale-105"
-      >
-        {messages.common.keepShopping}
-      </LocaleLink>
+      <div className="mt-8 text-center">
+        <LocaleLink
+          href="/products"
+          className="inline-block rounded-full bg-accent px-8 py-3 font-semibold text-accent-foreground transition-transform hover:scale-105"
+        >
+          {messages.common.keepShopping}
+        </LocaleLink>
+      </div>
     </div>
   );
 }

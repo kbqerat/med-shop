@@ -293,7 +293,7 @@ export const fr: Messages = {
     kicker: "Commande reçue",
     thanks: "Merci, {name}",
     confirmedLine:
-      "La commande {number} est confirmée. Nous vous appellerons au {phone} pour organiser la livraison — payez en espèces à la réception.",
+      "Nous avons bien reçu votre commande, désormais en préparation. Nous vous appellerons au {phone} sous peu pour confirmer les détails de livraison — paiement en espèces à la réception.",
     orderDetailsHeading: "Détails de la commande",
     orderNumber: "Numéro de commande",
     date: "Date",

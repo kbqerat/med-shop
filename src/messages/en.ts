@@ -292,7 +292,7 @@ export const en = {
     kicker: "Order received",
     thanks: "Thanks, {name}",
     confirmedLine:
-      "Order {number} is confirmed. We'll call you at {phone} to arrange delivery — pay in cash when your order arrives.",
+      "We've received your order and it's now being prepared. We'll call you at {phone} shortly to confirm the delivery details — payment is cash on delivery.",
     orderDetailsHeading: "Order details",
     orderNumber: "Order number",
     date: "Date",

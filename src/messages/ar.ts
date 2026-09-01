@@ -76,7 +76,7 @@ export const ar: Messages = {
     authenticTitle: "جودة ممتازة",
     authenticSubtitle: "ستايل عصري",
     freeDeliveryBadge: "توصيل مجاني في كل أنحاء المغرب",
-    codBadge: "الدفع عند الاستلام",
+    codBadge: "التوصيل فابور",
     trustCod: "الدفع عند الاستلام — بدون أي دفع إلكتروني.",
     trustDelivery: "التوصيل مجاني لجميع أنحاء المغرب 🇲🇦",
     trustAuthentic: "جودة ممتازة · ستايل عصري · مناسبة للجميع.",
@@ -310,7 +310,7 @@ export const ar: Messages = {
     kicker: "تم استلام الطلب",
     thanks: "شكرًا، {name}",
     confirmedLine:
-      "تم تأكيد الطلب {number}. سنتصل بك على {phone} لترتيب التوصيل — ادفع نقدًا عند وصول طلبك.",
+      "توصّلنا بطلبك وهو الآن قيد التحضير. سنتصل بك على {phone} خلال وقت قصير لتأكيد تفاصيل التوصيل — والدفع نقدًا عند الاستلام.",
     orderDetailsHeading: "تفاصيل الطلب",
     orderNumber: "رقم الطلب",
     date: "التاريخ",
