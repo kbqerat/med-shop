@@ -74,8 +74,6 @@ automatically on the first deploy (`vercel-build` runs `prisma db push`).
    ADMIN_URL              = https://your-vercel-domain.vercel.app
    ADMIN_PASSWORD         = <a strong password>
    ADMIN_SESSION_SECRET   = <output of: openssl rand -base64 32>
-   TELEGRAM_BOT_TOKEN     = <from your local .env>   (optional)
-   TELEGRAM_CHAT_ID       = <from your local .env>   (optional)
    RESEND_API_KEY         = <from your local .env>   (optional)
    ORDER_NOTIFY_EMAIL_FROM= onboarding@resend.dev    (optional)
    ORDER_NOTIFY_EMAIL_TO  = <owner inbox>            (optional)

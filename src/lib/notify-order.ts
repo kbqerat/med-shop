@@ -39,25 +39,6 @@ function summary(order: OrderNotification): string {
     .join("\n");
 }
 
-async function sendTelegram(text: string): Promise<void> {
-  const token = process.env.TELEGRAM_BOT_TOKEN?.trim();
-  const chatId = process.env.TELEGRAM_CHAT_ID?.trim();
-  if (!token || !chatId) return;
-
-  const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text,
-      disable_web_page_preview: true,
-    }),
-  });
-  if (!res.ok) {
-    throw new Error(`Telegram sendMessage ${res.status}: ${await res.text()}`);
-  }
-}
-
 async function sendEmail(order: OrderNotification, text: string): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   const from = process.env.ORDER_NOTIFY_EMAIL_FROM?.trim();
@@ -83,20 +64,15 @@ async function sendEmail(order: OrderNotification, text: string): Promise<void> 
 }
 
 /**
- * Best-effort "you have a new order" ping to the shop owner over every configured
- * channel (Telegram, email). Each channel is a no-op until its env vars are set,
- * and a channel failing never affects the others or the order itself — call this
- * from `after()` so a slow or down provider can't hold up checkout.
+ * Best-effort "you have a new order" email to the shop owner. It's a no-op until
+ * the Resend env vars are set, and a failure never affects the order itself —
+ * call this from `after()` so a slow or down provider can't hold up checkout.
  */
 export async function notifyNewOrder(order: OrderNotification): Promise<void> {
   const text = summary(order);
-  const results = await Promise.allSettled([
-    sendTelegram(text),
-    sendEmail(order, text),
-  ]);
-  for (const result of results) {
-    if (result.status === "rejected") {
-      console.error("[notify-order] channel failed:", result.reason);
-    }
+  try {
+    await sendEmail(order, text);
+  } catch (error) {
+    console.error("[notify-order] email failed:", error);
   }
 }
