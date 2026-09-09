@@ -4,7 +4,6 @@ import { prisma } from "@/lib/prisma";
 import { JsonLd } from "@/components/json-ld";
 import { organizationSchema, webSiteSchema } from "@/lib/structured-data";
 import { ProductCard } from "@/components/product-card";
-import { CategoryTile } from "@/components/category-tile";
 import {
   TruckIcon,
   BadgeCheckIcon,
@@ -13,12 +12,10 @@ import {
   WhatsAppIcon,
 } from "@/components/icons";
 import { Testimonials } from "@/components/testimonials";
-import { getCategories } from "@/lib/categories";
 import { toProductCardData } from "@/lib/product-card-data";
 import { getDictionary, getLocale, getTranslations } from "@/lib/i18n/server";
 import heroMain from "@/images/landing/img3.jpeg";
 import heroAccent from "@/images/landing/img1.jpeg";
-import showroomBanner from "@/images/landing/img2.jpeg";
 
 export const dynamic = "force-dynamic";
 
@@ -36,9 +33,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const [{ messages }, categories, categoryGroups] = await Promise.all([
+  const [{ messages }, categoryGroups] = await Promise.all([
     getTranslations(),
-    getCategories(),
     prisma.category.findMany({
       orderBy: { createdAt: "asc" },
       include: {
@@ -195,42 +191,6 @@ export default async function Home() {
           <div className="flex items-center gap-3">
             <BadgeCheckIcon className="h-5 w-5 flex-shrink-0 text-accent" />
             {m.trustAuthentic}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <p className="text-xs font-semibold uppercase tracking-widest text-accent">
-          {m.browseKicker}
-        </p>
-        <h2 className="mt-2 text-3xl font-bold tracking-tight">
-          {m.browseTitle}
-        </h2>
-        <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-5">
-          {categories.map((category) => (
-            <CategoryTile key={category.slug} {...category} />
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 pb-20">
-        <div className="relative h-56 overflow-hidden rounded-3xl sm:h-72">
-          <Image
-            src={showroomBanner}
-            alt={m.showroomAlt}
-            fill
-            sizes="(min-width: 1024px) 1152px, 100vw"
-            className="object-cover"
-            style={{ objectPosition: "50% 78%" }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-transparent rtl:bg-gradient-to-l" />
-          <div className="relative z-10 flex h-full flex-col justify-center p-8 sm:p-14">
-            <p className="text-sm font-semibold uppercase tracking-wide text-white/80">
-              {m.showroomKicker}
-            </p>
-            <h2 className="mt-3 max-w-sm text-2xl font-bold text-white sm:text-3xl">
-              {m.showroomTitle}
-            </h2>
           </div>
         </div>
       </section>
