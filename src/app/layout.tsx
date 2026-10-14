@@ -45,7 +45,6 @@ export async function generateMetadata(): Promise<Metadata> {
       "hats",
       "snapback",
       "casquette",
-      "New Era",
       "streetwear",
       "Morocco",
       "Maroc",

@@ -11,11 +11,10 @@ import {
   PhoneIcon,
   WhatsAppIcon,
 } from "@/components/icons";
-import { Testimonials } from "@/components/testimonials";
 import { toProductCardData } from "@/lib/product-card-data";
 import { getDictionary, getLocale, getTranslations } from "@/lib/i18n/server";
-import heroMain from "@/images/landing/img3.jpeg";
-import heroAccent from "@/images/landing/img1.jpeg";
+import heroMain from "@/images/landing/img5.png";
+import heroAccent from "@/images/landing/img5.png";
 
 export const dynamic = "force-dynamic";
 
@@ -130,7 +129,7 @@ export default async function Home() {
             </div>
 
             <div className="relative mx-auto w-full max-w-sm lg:max-w-none">
-              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/10">
+              <div className="relative aspect-square w-full overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/10">
                 <Image
                   src={heroMain}
                   alt={m.heroMainAlt}
@@ -138,7 +137,7 @@ export default async function Home() {
                   priority
                   sizes="(min-width: 1024px) 40vw, 100vw"
                   className="object-cover"
-                  style={{ objectPosition: "50% 88%" }}
+                  style={{ objectPosition: "50% 50%" }}
                 />
                 <div className="absolute start-3 top-3 flex items-center gap-2 rounded-full bg-black/55 px-3.5 py-2 text-xs font-semibold text-white ring-1 ring-white/15 backdrop-blur-sm sm:start-4 sm:top-4">
                   <TruckIcon className="h-4 w-4 flex-shrink-0" />
@@ -147,14 +146,14 @@ export default async function Home() {
               </div>
 
               <div className="absolute -bottom-4 -start-4 w-20 -rotate-6 overflow-hidden rounded-xl border-[3px] border-background shadow-2xl transition-transform hover:rotate-0 sm:-bottom-8 sm:-start-8 sm:w-40 sm:rounded-2xl sm:border-4">
-                <div className="relative aspect-[4/5]">
+                <div className="relative aspect-square">
                   <Image
                     src={heroAccent}
                     alt={m.heroAccentAlt}
                     fill
                     sizes="160px"
                     className="object-cover"
-                    style={{ objectPosition: "50% 55%" }}
+                    style={{ objectPosition: "50% 50%" }}
                   />
                 </div>
               </div>
@@ -169,7 +168,7 @@ export default async function Home() {
                 </div>
               </div>
 
-              <div className="absolute -bottom-3 -end-3 hidden items-center gap-2.5 rounded-2xl bg-accent px-4 py-3 text-accent-foreground shadow-2xl ring-1 ring-black/5 sm:-bottom-5 sm:-end-5 sm:flex">
+              <div className="absolute end-0 top-full mt-3 hidden items-center gap-2.5 rounded-2xl bg-accent px-4 py-3 text-accent-foreground shadow-2xl ring-1 ring-black/5 sm:flex">
                 <TruckIcon className="h-5 w-5 flex-shrink-0" />
                 <p className="text-sm font-bold leading-tight">
                   {m.freeDeliveryBadge}
@@ -220,7 +219,6 @@ export default async function Home() {
         </section>
       ))}
 
-      <Testimonials />
     </div>
   );
 }

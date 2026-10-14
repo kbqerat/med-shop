@@ -11,13 +11,13 @@ export const en = {
   meta: {
     homeTitle: "Med Shop — High-quality caps, free delivery to your door",
     homeDescription:
-      "Authentic caps from the brands you love — checked by hand and delivered across Morocco with cash on delivery.",
+      "High-quality, modern-style caps — checked by hand and delivered across Morocco with cash on delivery.",
     shopTitle: "Shop all caps",
     shopDescription:
       "Browse every cap in stock — filter by brand, size, colour and price. Cash on delivery across Morocco.",
     categoryTitle: "{name} caps",
     categoryDescription:
-      "Shop authentic {name} caps at Med Shop — checked by hand, cash on delivery across Morocco.",
+      "Shop {name} caps at Med Shop — checked by hand, cash on delivery across Morocco.",
     orderConfirmedTitle: "Order confirmed",
   },
 
@@ -62,13 +62,13 @@ export const en = {
   },
 
   home: {
-    heroBadge: "🧢 Casquette Lacoste 2027",
-    heroTitle: "Casquette {brand} 2027",
-    heroTitleBrands: "Lacoste",
+    heroBadge: "🧢 Casquette 2027",
+    heroTitle: "Casquette {brand}",
+    heroTitleBrands: "2027",
     heroSubtitle:
       "Premium quality · modern style · for everyone. Checked by hand and shipped fast across Morocco.",
     heroRating: "Trusted by shoppers across Morocco",
-    heroMainAlt: "Lacoste 2027 cap on display",
+    heroMainAlt: "2027 caps on display",
     heroAccentAlt: "Stacked caps",
     offersKicker: "🔥 Offers",
     offers: [
@@ -91,55 +91,6 @@ export const en = {
     showroomAlt: "Inside the Med Shop showroom",
   },
 
-  testimonials: {
-    kicker: "Customer reviews",
-    title: "What our customers say",
-    reviewsLabel: "{count} reviews",
-    items: [
-      {
-        name: "Yassine B.",
-        city: "Casablanca",
-        rating: 5,
-        quote:
-          "Top quality and super fast delivery. The Nike cap was exactly like the photos.",
-      },
-      {
-        name: "Mehdi K.",
-        city: "Rabat",
-        rating: 5,
-        quote:
-          "First order and I'm won over. Paying on delivery is really reassuring.",
-      },
-      {
-        name: "Ayoub M.",
-        city: "Marrakech",
-        rating: 4,
-        quote:
-          "Great customer service, quick to reply on WhatsApp. The Adidas cap is now my daily.",
-      },
-      {
-        name: "Imane R.",
-        city: "Oujda",
-        rating: 5,
-        quote:
-          "Finally a serious shop for branded caps in Morocco. Highly recommend.",
-      },
-      {
-        name: "Othmane L.",
-        city: "Fès",
-        rating: 5,
-        quote:
-          "Order arrived in 3 days, well packed. The New Era is even better in person.",
-      },
-      {
-        name: "Hamza T.",
-        city: "Tanger",
-        rating: 4,
-        quote:
-          "Good value and several brands in one place. I've already ordered twice.",
-      },
-    ],
-  },
 
   stock: {
     soldOut: "Sold out",
@@ -314,7 +265,7 @@ export const en = {
 
   footer: {
     tagline:
-      "Caps from the brands you love, delivered across Morocco with cash on delivery.",
+      "High-quality, modern-style caps, delivered across Morocco with cash on delivery.",
     shopHeading: "Shop",
     allCaps: "All caps",
     contactHeading: "Contact",

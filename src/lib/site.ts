@@ -13,7 +13,7 @@ export const SITE = {
   shortName: "Med Shop",
   /** Used as the default meta description and OG description. */
   description:
-    "Authentic caps from the brands you love — checked by hand and delivered across Morocco with cash on delivery.",
+    "High-quality, modern-style caps — checked by hand and delivered across Morocco with cash on delivery.",
   tagline: "Headwear for the streets.",
   locale: "en_US",
   /** Brand green — matches --accent in globals.css. */

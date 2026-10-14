@@ -7,13 +7,13 @@ export const ar: Messages = {
   meta: {
     homeTitle: "Med Shop — قبعات جودة عالية، توصيل مجاني إلى باب منزلك",
     homeDescription:
-      "قبعات أصلية من العلامات التي تحبّها — نتفحّصها يدويًا ونوصّلها إلى كل المغرب مع الدفع عند الاستلام.",
+      "قبعات عالية الجودة بستايل عصري — نتفحّصها يدويًا ونوصّلها إلى كل المغرب مع الدفع عند الاستلام.",
     shopTitle: "كل القبعات",
     shopDescription:
       "تصفّح كل القبعات المتوفرة — رشّح حسب العلامة والمقاس واللون والسعر. الدفع عند الاستلام في كل المغرب.",
     categoryTitle: "قبعات {name}",
     categoryDescription:
-      "اشترِ قبعات {name} الأصلية من Med Shop — مفحوصة يدويًا، والدفع عند الاستلام في كل المغرب.",
+      "اشترِ قبعات {name} من Med Shop — مفحوصة يدويًا، والدفع عند الاستلام في كل المغرب.",
     orderConfirmedTitle: "تم تأكيد الطلب",
   },
 
@@ -58,13 +58,13 @@ export const ar: Messages = {
   },
 
   home: {
-    heroBadge: "🧢 Casquette Lacoste 2027",
-    heroTitle: "Casquette {brand} 2027",
-    heroTitleBrands: "Lacoste",
+    heroBadge: "🧢 Casquette 2027",
+    heroTitle: "Casquette {brand}",
+    heroTitleBrands: "2027",
     heroSubtitle:
       "✨ جودة ممتازة · ستايل عصري · مناسبة للجميع. مفحوصة يدويًا وتُشحن بسرعة إلى كل المغرب.",
     heroRating: "ثقة المتسوّقين في كل المغرب",
-    heroMainAlt: "قبعة Lacoste 2027 معروضة",
+    heroMainAlt: "قبعات 2027 معروضة",
     heroAccentAlt: "قبعات مرصوصة",
     offersKicker: "🔥 العروض",
     offers: [
@@ -87,61 +87,6 @@ export const ar: Messages = {
     showroomAlt: "داخل معرض Med Shop",
   },
 
-  testimonials: {
-    kicker: "آراء العملاء",
-    title: "ماذا يقول زبناؤنا",
-    reviewsLabel: "{count} تقييم",
-    items: [
-      {
-        // فصحى
-        name: "ياسين ب.",
-        city: "الدار البيضاء",
-        rating: 5,
-        quote:
-          "جودة ممتازة والتوصيل أسرع مما توقّعت، وصلني الطلب في أقل من 24 ساعة ومطابق للصور. سأطلب مرة أخرى بالتأكيد.",
-      },
-      {
-        // دارجة
-        name: "مهدي ك.",
-        city: "الرباط",
-        rating: 5,
-        quote:
-          "صراحة عجباتني بزاف، الخامة كتبان فيها الجودة والقياس مزيان. وصلتني في أقل من 24 ساعة، غادي نعاود نشري.",
-      },
-      {
-        // دارجة
-        name: "أيوب م.",
-        city: "وجدة",
-        rating: 4,
-        quote:
-          "المنتوج زوين والثمن معقول. التغليف مزيان وكلشي وصل بلا مشكل.",
-      },
-      {
-        // فصحى
-        name: "إيمان ر.",
-        city: "وجدة",
-        rating: 5,
-        quote:
-          "كنت مترددة في الطلب أونلاين، لكن الدفع عند الاستلام طمأنني. الرد على واتساب سريع والتعامل محترم، أنصح بهم.",
-      },
-      {
-        // دارجة بحروف لاتينية
-        name: "Othmane L.",
-        city: "Oujda",
-        rating: 5,
-        quote:
-          "Khedma nadia w l commande wselni f 24h. Sewwelt f WhatsApp 9bel ma nekhlless w jaweboni bzarba. Nsahkom bihom.",
-      },
-      {
-        // دارجة بحروف لاتينية
-        name: "Hamza T.",
-        city: "Tanger",
-        rating: 4,
-        quote:
-          "L'experience 3jbatni w l paiement 3nd l'istilam howa li khlani nkhtar.",
-      },
-    ],
-  },
 
   stock: {
     soldOut: "نفد",
@@ -332,7 +277,7 @@ export const ar: Messages = {
 
   footer: {
     tagline:
-      "قبعات من العلامات التي تحبّها، تُوصَّل إلى كل المغرب مع الدفع عند الاستلام.",
+      "قبعات عالية الجودة بستايل عصري، تُوصَّل إلى كل المغرب مع الدفع عند الاستلام.",
     shopHeading: "المتجر",
     allCaps: "كل القبعات",
     contactHeading: "تواصل معنا",

@@ -7,13 +7,13 @@ export const fr: Messages = {
   meta: {
     homeTitle: "Med Shop — Casquettes de haute qualité, livraison gratuite à domicile",
     homeDescription:
-      "Des casquettes authentiques des marques que vous aimez — vérifiées à la main et livrées partout au Maroc avec paiement à la livraison.",
+      "Des casquettes de qualité au style moderne — vérifiées à la main et livrées partout au Maroc avec paiement à la livraison.",
     shopTitle: "Toutes les casquettes",
     shopDescription:
       "Parcourez toutes les casquettes en stock — filtrez par marque, taille, couleur et prix. Paiement à la livraison partout au Maroc.",
     categoryTitle: "Casquettes {name}",
     categoryDescription:
-      "Achetez des casquettes {name} authentiques chez Med Shop — vérifiées à la main, paiement à la livraison partout au Maroc.",
+      "Achetez des casquettes {name} chez Med Shop — vérifiées à la main, paiement à la livraison partout au Maroc.",
     orderConfirmedTitle: "Commande confirmée",
   },
 
@@ -58,13 +58,13 @@ export const fr: Messages = {
   },
 
   home: {
-    heroBadge: "🧢 Casquette Lacoste 2027",
-    heroTitle: "Casquette {brand} 2027",
-    heroTitleBrands: "Lacoste",
+    heroBadge: "🧢 Casquette 2027",
+    heroTitle: "Casquette {brand}",
+    heroTitleBrands: "2027",
     heroSubtitle:
       "Qualité premium · style moderne · pour tout le monde. Vérifiée à la main et expédiée rapidement partout au Maroc.",
     heroRating: "La confiance des acheteurs partout au Maroc",
-    heroMainAlt: "Casquette Lacoste 2027 exposée",
+    heroMainAlt: "Casquettes 2027 exposées",
     heroAccentAlt: "Casquettes empilées",
     offersKicker: "🔥 Offres",
     offers: [
@@ -87,55 +87,6 @@ export const fr: Messages = {
     showroomAlt: "À l'intérieur du showroom Med Shop",
   },
 
-  testimonials: {
-    kicker: "Avis clients",
-    title: "Ce que disent nos clients",
-    reviewsLabel: "{count} avis",
-    items: [
-      {
-        name: "Yassine B.",
-        city: "Casablanca",
-        rating: 5,
-        quote:
-          "Qualité au top et livraison super rapide. La casquette Nike était exactement comme sur les photos.",
-      },
-      {
-        name: "Mehdi K.",
-        city: "Rabat",
-        rating: 5,
-        quote:
-          "Première commande et je suis conquis. Le paiement à la livraison rassure vraiment.",
-      },
-      {
-        name: "Ayoub M.",
-        city: "Marrakech",
-        rating: 4,
-        quote:
-          "Très bon service client, réponse rapide sur WhatsApp. La casquette Adidas est devenue mon quotidien.",
-      },
-      {
-        name: "Imane R.",
-        city: "Oujda",
-        rating: 5,
-        quote:
-          "Enfin une boutique sérieuse pour les casquettes de marque au Maroc. Je recommande à 100%.",
-      },
-      {
-        name: "Othmane L.",
-        city: "Fès",
-        rating: 5,
-        quote:
-          "Commande reçue en 3 jours, bien emballée. La New Era est encore mieux en vrai.",
-      },
-      {
-        name: "Hamza T.",
-        city: "Tanger",
-        rating: 4,
-        quote:
-          "Bon rapport qualité-prix et plusieurs marques au même endroit. J'ai déjà commandé deux fois.",
-      },
-    ],
-  },
 
   stock: {
     soldOut: "Épuisé",
@@ -316,7 +267,7 @@ export const fr: Messages = {
 
   footer: {
     tagline:
-      "Des casquettes des marques que vous aimez, livrées partout au Maroc avec paiement à la livraison.",
+      "Des casquettes de qualité au style moderne, livrées partout au Maroc avec paiement à la livraison.",
     shopHeading: "Boutique",
     allCaps: "Toutes les casquettes",
     contactHeading: "Contact",

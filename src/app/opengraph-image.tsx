@@ -43,7 +43,7 @@ export default function OpengraphImage() {
             fontWeight: 600,
           }}
         >
-          Authentic caps · Cash on delivery across Morocco
+          Quality caps · Cash on delivery across Morocco
         </div>
       </div>
     ),
